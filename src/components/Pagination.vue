@@ -18,9 +18,12 @@ export default {
     };
   },
   methods: {
-    handlePagination:page=> {
-      console.log(`Page ${page} was selected. Do something about it`);
+    handlePagination(page) {
+     this.$store.dispatch('loadComments',page)
+     
     },
+  
+   
   },
 };
 </script>

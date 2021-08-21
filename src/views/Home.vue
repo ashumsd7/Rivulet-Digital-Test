@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <div class="container">
+    <div class="container mt-3">
       <div class="row d-flex justify-content-center">
         <CommentPost
           v-for="comment in fetchComments"
