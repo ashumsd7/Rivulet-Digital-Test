@@ -47,5 +47,9 @@ export default {
   position: fixed;
   bottom: 0;
   left: 20px;
+  overflow-x: scroll;
+    max-width: 100vw;
+    overflow-x: scroll;
 }
+
 </style>
