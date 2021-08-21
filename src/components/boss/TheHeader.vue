@@ -1,6 +1,6 @@
 <template>
     <header>    
-        <img width="200" height="40" src="https://cdn.rivuletdigital.com/rivuletdigital/uploads/2020/07/logo.svg" alt="" srcset=""><strong class="ml-3">Thank you for the chance.</strong> By : <a href="http://aashu.online">Aashu</a>
+        <img width="200" height="40" src="https://cdn.rivuletdigital.com/rivuletdigital/uploads/2020/07/logo.svg" alt="" srcset=""><strong class="ml-3">Thank you for the chance . By : <a href="http://aashu.online">Aashu</a></strong> 
     </header>
 </template>
 
@@ -13,7 +13,6 @@
 <style scoped>
 header{
     height: auto;
-    width: 100vw;
     background: rgb(0, 0, 0);
     color: white;
 }

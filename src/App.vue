@@ -17,6 +17,12 @@ export default {
 </script>
 
 <style lang="scss">
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
 #app{
   background:url('https://image.freepik.com/free-vector/leaves-background-with-metallic-foil_79603-914.jpg');
 }

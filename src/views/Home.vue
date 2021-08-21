@@ -1,8 +1,7 @@
 <template>
   <div class="home">
-
     <div class="container mt-3">
-      <Loader v-if="isLoading"/>
+      <Loader v-if="isLoading" />
       <div v-else class="row d-flex justify-content-center">
         <CommentPost
           v-for="comment in fetchComments"
@@ -13,12 +12,10 @@
           :key="comment.id"
         />
       </div>
-      <div v-if="!isLoading" class="row d-flex justify-content-center mt-5">
-
-       <Pagintaion />
+      <div class="row d-flex justify-content-center mt-5 pagination">
+        <Pagintaion v-if="!isLoading" />
       </div>
     </div>
-       
   </div>
 </template>
 
@@ -33,14 +30,22 @@ export default {
     fetchComments() {
       return this.$store.getters.getComments;
     },
-    isLoading(){
+    isLoading() {
       return this.$store.getters.isLoading;
-    }
+    },
   },
   components: {
     Pagintaion,
     CommentPost,
-    Loader
+    Loader,
   },
 };
 </script>
+
+<style scoped>
+.pagination{
+  position: fixed;
+  bottom: 0;
+  left: 20px;
+}
+</style>

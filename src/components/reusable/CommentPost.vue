@@ -37,7 +37,7 @@ export default {
 .commentPost {
   /* border: 1px solid black; */
   border-radius: 20px;
-  width: 350px;
+  max-width: 350px;
   min-height: 200px;
   padding: 0.4rem;
   background: url("https://img.freepik.com/free-psd/empty-blackboard_53876-78690.jpg?size=626&ext=jpg");
