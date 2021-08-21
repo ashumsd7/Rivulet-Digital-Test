@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <div class="container mt-3">
+      <span class="badge badge-pill badge-success">Currently Showing Page: {{getPageStatus}} </span>
       <Loader v-if="isLoading" />
       <div v-else class="row d-flex justify-content-center">
         <CommentPost
@@ -33,6 +34,9 @@ export default {
     isLoading() {
       return this.$store.getters.isLoading;
     },
+    getPageStatus() {
+      return this.$store.getters.getPageStatus;
+    },
   },
   components: {
     Pagintaion,
@@ -46,10 +50,13 @@ export default {
 .pagination{
   position: fixed;
   bottom: 0;
-  left: 20px;
+
   overflow-x: scroll;
     max-width: 100vw;
     overflow-x: scroll;
+    color: wheat;
+    background: black;
 }
+
 
 </style>

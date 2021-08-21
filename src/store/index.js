@@ -9,6 +9,7 @@ export default new Vuex.Store({
     comments: [],
     isLoading: true,
     isError: false,
+    page:1
   },
   mutations: {
     SET_COMMENTS(state, payload) {
@@ -20,10 +21,13 @@ export default new Vuex.Store({
     CHANGE_STATUS_ERROR(state, toggle) {
       state.isError = toggle;
     },
+    SET_PAGE(state, page) {
+      state.page = page;
+    },
   },
   actions: {
     loadComments(context, page) {
-       context.commit("CHANGE_STATUS_ERROR", false);
+      context.commit("CHANGE_STATUS_ERROR", false);
       context.commit("CHANGE_STATUS_LOADING", true);
       axios
         .get(
@@ -32,11 +36,12 @@ export default new Vuex.Store({
         .then((res) => {
           context.commit("SET_COMMENTS", res.data);
           context.commit("CHANGE_STATUS_LOADING", false);
+           context.commit("SET_PAGE", page);
         })
-        .catch(err => {
-         context.commit("CHANGE_STATUS_LOADING", false);
-         context.commit("CHANGE_STATUS_ERROR", true);
-      })
+        .catch((err) => {
+          context.commit("CHANGE_STATUS_LOADING", false);
+          context.commit("CHANGE_STATUS_ERROR", true);
+        });
     },
   },
   getters: {
@@ -49,5 +54,8 @@ export default new Vuex.Store({
     isError(state) {
       return state.isError;
     },
+    getPageStatus(state) {
+      return state.page;
+    }
   },
 });
