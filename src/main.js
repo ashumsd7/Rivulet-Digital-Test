@@ -7,6 +7,10 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import Pagination from "vue-pagination-2";
 Vue.component("pagination", Pagination);
 
+
+
+
+
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)

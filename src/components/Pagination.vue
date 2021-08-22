@@ -1,12 +1,14 @@
 <template>
   <div>
-    <pagination
-      :records="100"
-      v-model="page"
-      :per-page="5"
-      @paginate="handlePagination"
-    >
-    </pagination>
+    <div id="app" v-cloak>
+      <pagination
+        :records="100"
+        v-model="page"
+        :per-page="5"
+        @paginate="callback"
+      >
+      </pagination>
+    </div>
   </div>
 </template>
 
@@ -14,22 +16,20 @@
 export default {
   data() {
     return {
-      page:1,
+      page: 1,
     };
   },
   methods: {
-    handlePagination(page) {
-     this.$store.dispatch('loadComments',page)
-     
+    callback(page) {
+      this.page = page;
+      this.$store.dispatch("loadComments", page);
     },
-  
-   
+    pageChanged() {
+      alert();
+    },
   },
 };
 </script>
 
 <style  scoped>
-
-
-
 </style>
