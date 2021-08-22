@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="container mt-5">
-      <Error v-if="isError"/>
+      <Error v-if="isError && !isLoading"/>
       <div class="mb-3" v-if="!isError">
         <button class="btn btn-success mb-3" @click="NextorPrev('prev')">
           Prev Page
@@ -25,9 +25,9 @@
           :key="comment.id"
         />
       </div>
-      <div v-if="!isError" class="row d-flex justify-content-center mt-5 pagination">
+      <!-- <div v-if="!isError && !isLoading" class="row d-flex justify-content-center mt-5 pagination"> -->
       <Pagintaion  />
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </template>

@@ -39,7 +39,7 @@ export default new Vuex.Store({
            context.commit("SET_PAGE", page);
         })
         .catch((err) => {
-          alert('err')
+          // alert('err')
           context.commit("CHANGE_STATUS_LOADING", false);
           context.commit("CHANGE_STATUS_ERROR", true);
         });
