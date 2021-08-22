@@ -25,5 +25,6 @@ export default {
 }
 #app{
   background:url('https://image.freepik.com/free-vector/leaves-background-with-metallic-foil_79603-914.jpg');
+  background-size: cover;
 }
 </style>

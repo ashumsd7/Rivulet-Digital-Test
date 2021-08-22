@@ -2,13 +2,13 @@
   <div class="home">
     <div class="container mt-5">
       <Error v-if="isError && !isLoading"/>
-      <div class="mb-3" v-if="!isError">
+      <div class="mb-3 row d-flex justify-content-center" v-if="!isError">
         <button class="btn btn-success mb-3" @click="NextorPrev('prev')">
           Prev Page
         </button>
-        <span class="badge badge-pill badge-info"
-          >Currently Showing Page: {{ getPageStatus }}
-        </span>
+        <p class="m-2"
+          >Currently Showing Page: <strong>{{ getPageStatus }}</strong> 
+        </p>
         <button class="btn btn-success mb-3" @click="NextorPrev('next')">
           Next Page
         </button>
