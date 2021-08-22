@@ -40,9 +40,7 @@ export default {
       this.page = page;
       this.$store.dispatch("loadComments", {page:page,entry:this.getPageEntry});
     },
-    pageChanged() {
-      alert();
-    },
+    
   },
 };
 </script>
