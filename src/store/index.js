@@ -9,7 +9,8 @@ export default new Vuex.Store({
     comments: [],
     isLoading: true,
     isError: false,
-    page:1
+    page: 1,
+    entries: 10,
   },
   mutations: {
     SET_COMMENTS(state, payload) {
@@ -24,22 +25,28 @@ export default new Vuex.Store({
     SET_PAGE(state, page) {
       state.page = page;
     },
+    SET_PAGE_ENTRY(state, entry) {
+      state.entries = entry;
+    }
   },
   actions: {
-    loadComments(context, page) {
+    loadComments(context, payload) {
+     
+      console.log(payload.page);
+      console.log(payload.entry);
       context.commit("CHANGE_STATUS_ERROR", false);
       context.commit("CHANGE_STATUS_LOADING", true);
       axios
         .get(
-          `https://jsonplaceholder.typicode.com/comments?_page=${page}&_limit=5`
+          `https://jsonplaceholder.typicode.com/comments?_page=${payload.page}&_limit=${payload.entry}`
         )
         .then((res) => {
           context.commit("SET_COMMENTS", res.data);
           context.commit("CHANGE_STATUS_LOADING", false);
-           context.commit("SET_PAGE", page);
+          context.commit("SET_PAGE", payload.page);
+          context.commit("SET_PAGE_ENTRY", payload.entry);
         })
         .catch((err) => {
-          
           context.commit("CHANGE_STATUS_LOADING", false);
           context.commit("CHANGE_STATUS_ERROR", true);
         });
@@ -57,6 +64,9 @@ export default new Vuex.Store({
     },
     getPageStatus(state) {
       return state.page;
-    }
+    },
+    getPageEntry(state) {
+      return state.entries;
+    },
   },
 });

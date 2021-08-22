@@ -11,7 +11,7 @@ export default {
     TheHeader
   },
   created() {
-    this.$store.dispatch('loadComments',1)
+    this.$store.dispatch('loadComments',{page:1,entry:10})
   },
 }
 </script>

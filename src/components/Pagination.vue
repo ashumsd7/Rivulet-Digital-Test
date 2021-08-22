@@ -8,7 +8,7 @@
         <pagination
           :records="100"
           v-model="page"
-          :per-page="5"
+          :per-page="getPageEntry"
           @paginate="callback"
         >
         </pagination>
@@ -26,6 +26,9 @@ export default {
     isError() {
       return this.$store.getters.isError;
     },
+     getPageEntry() {
+      return this.$store.getters.getPageEntry;
+    },
   },
   data() {
     return {
@@ -35,7 +38,7 @@ export default {
   methods: {
     callback(page) {
       this.page = page;
-      this.$store.dispatch("loadComments", page);
+      this.$store.dispatch("loadComments", {page:page,entry:this.getPageEntry});
     },
     pageChanged() {
       alert();

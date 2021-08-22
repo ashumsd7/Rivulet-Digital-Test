@@ -9,6 +9,7 @@
         <p class="m-2"
           >Currently Showing Page: <strong>{{ getPageStatus }}</strong> 
         </p>
+        <EntryControl/>
         <button class="btn btn-success mb-3" @click="NextorPrev('next')">
           Next Page
         </button>
@@ -38,6 +39,7 @@ import Pagintaion from "../components/Pagination.vue";
 import CommentPost from "../components/reusable/CommentPost.vue";
 import Loader from "../components/Loader.vue";
 import Error from "../components/Error.vue";
+import EntryControl from "../components/EntryControl.vue";
 
 export default {
   computed: {
@@ -53,12 +55,16 @@ export default {
     getPageStatus() {
       return this.$store.getters.getPageStatus;
     },
+    getPageEntry() {
+      return this.$store.getters.getPageEntry;
+    },
   },
   components: {
     Pagintaion,
     CommentPost,
     Loader,
-    Error
+    Error,
+    EntryControl
   },
   methods: {
     NextorPrev(action) {
@@ -69,8 +75,8 @@ export default {
         return;
       }
       action == "next"
-        ? this.$store.dispatch("loadComments", this.getPageStatus + 1)
-        : this.$store.dispatch("loadComments", this.getPageStatus - 1);
+        ? this.$store.dispatch("loadComments", this.getPageStatus + 1,this.getPageEntry)
+        : this.$store.dispatch("loadComments", this.getPageStatus - 1,this.getPageEntry);
     },
   },
 };
