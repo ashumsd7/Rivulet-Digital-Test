@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import axios from 'axios'
+import Vue from "vue";
+import Vuex from "vuex";
+import axios from "axios";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
@@ -13,27 +13,30 @@ export default new Vuex.Store({
     entries: 10,
   },
   mutations: {
+    //MUTATION: SETTING POSTS (COMMNETS) to STATE 
     SET_COMMENTS(state, payload) {
       state.comments = payload;
     },
+    //MUTATION: CHNAGING LOADER STATUS
     CHANGE_STATUS_LOADING(state, toggle) {
       state.isLoading = toggle;
     },
+    //MUTATION: CHNAGING ERROR STATUS
     CHANGE_STATUS_ERROR(state, toggle) {
       state.isError = toggle;
     },
+    //MUTATION: SETTING PAGE NUMBER
     SET_PAGE(state, page) {
       state.page = page;
     },
+    //MUTATION: SETTING PAGE ENTRY
     SET_PAGE_ENTRY(state, entry) {
       state.entries = entry;
-    }
+    },
   },
   actions: {
+    //ACTION: WHEN LOADS COMMENTS (POSTS)
     loadComments(context, payload) {
-     
-      console.log(payload.page);
-      console.log(payload.entry);
       context.commit("CHANGE_STATUS_ERROR", false);
       context.commit("CHANGE_STATUS_LOADING", true);
       axios
@@ -53,18 +56,23 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    //FOR ALL POSTS
     getComments(state) {
       return state.comments;
     },
+    //WHEN API LOADS
     isLoading(state) {
       return state.isLoading;
     },
+    //IS THERE ANY ERROR : GETTERS
     isError(state) {
       return state.isError;
     },
+    //FOR PAGE NUMBER
     getPageStatus(state) {
       return state.page;
     },
+    //FOR PAGE ENTRIES
     getPageEntry(state) {
       return state.entries;
     },

@@ -1,13 +1,16 @@
 <template>
   <div class="home">
     <div class="container mt-5">
+      <!-- ERROR -->
       <Error v-if="isError && !isLoading"/>
+
+      <!-- PREV PAGE NEXT PAGE HANDLER -->
       <div class="mb-3 row d-flex justify-content-center" v-if="!isError">
         <button class="btn btn-success mb-3" @click="NextorPrev('prev')">
           Prev Page
         </button>
         <p class="m-2"
-          >Currently Showing Page: <strong>{{ getPageStatus }}</strong> 
+          >Currently Showing Page: <strong>{{ getPageStatus }}</strong>  | Entries : <strong>{{getPageEntry}}</strong>
         </p>
         <EntryControl/>
         <button class="btn btn-success mb-3" @click="NextorPrev('next')">
@@ -15,7 +18,10 @@
         </button>
       </div>
 
+<!-- LOADER -->
       <Loader v-if="isLoading" />
+
+      <!-- POSTS OR COMMENTS FETCHED FROM SERVER -->
       <div v-else class="row d-flex justify-content-center">
         <CommentPost
           v-for="comment in fetchComments"
@@ -26,15 +32,17 @@
           :key="comment.id"
         />
       </div>
-      <!-- <div v-if="!isError && !isLoading" class="row d-flex justify-content-center mt-5 pagination"> -->
+   
+   <!-- PAGINATION -->
       <Pagintaion  />
-      <!-- </div> -->
+    
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+// IMPORTING ALL COMPONENTS
 import Pagintaion from "../components/Pagination.vue";
 import CommentPost from "../components/reusable/CommentPost.vue";
 import Loader from "../components/Loader.vue";
@@ -42,6 +50,7 @@ import Error from "../components/Error.vue";
 import EntryControl from "../components/EntryControl.vue";
 
 export default {
+  //COMPUTED PROPERTIES FOR : COMMENTS, LOADING, ERROR, PAGE NUMBER, ENTRY PER PAGE
   computed: {
     fetchComments() {
       return this.$store.getters.getComments;
@@ -59,6 +68,7 @@ export default {
       return this.$store.getters.getPageEntry;
     },
   },
+  //REGISTERING COMPONENTS LOCALLY
   components: {
     Pagintaion,
     CommentPost,
@@ -67,6 +77,7 @@ export default {
     EntryControl
   },
   methods: {
+    //HANDLING NEXT OR PREV PAGE
     NextorPrev(action) {
       if(this.getPageStatus==1 && action=='prev'){
        return;
@@ -75,23 +86,13 @@ export default {
         return;
       }
       action == "next"
-        ? this.$store.dispatch("loadComments", this.getPageStatus + 1,this.getPageEntry)
-        : this.$store.dispatch("loadComments", this.getPageStatus - 1,this.getPageEntry);
+        ? this.$store.dispatch("loadComments", {page:this.getPageStatus + 1,entry:this.getPageEntry})
+        : this.$store.dispatch("loadComments", {page:this.getPageStatus - 1,entry:this.getPageEntry});
     },
   },
 };
 </script>
 
 <style scoped>
-.pagination {
-  /* position: fixed;
-  bottom: 0; */
-  /* 
 
-  overflow-x: scroll;
-    max-width: 100vw;
-    overflow-x: scroll;
-    color: wheat;
-    background: black; */
-}
 </style>
