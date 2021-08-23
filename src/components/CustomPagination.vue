@@ -1,6 +1,6 @@
 <template>
   <div class="custom-pagination">
-    <ul class="d-flex justify-content-center ">
+    <ul class="d-flex justify-content-center flex-wrap ">
       <li @click="nextOrPrev('prev')" :class="{makeDisable:isDisabled}">&lt;</li>
       <li v-for="i  in getTotalPage" @click="handlePageAction(i)" :id="i" :key="i">
         {{ i }}
