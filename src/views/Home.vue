@@ -1,21 +1,25 @@
 <template>
   <div class="home">
-    <div class="container mt-5">
+    <div class="container mt-4">
+    
+      <CustomPagination/>
       <!-- ERROR -->
       <Error v-if="isError && !isLoading"/>
 
       <!-- PREV PAGE NEXT PAGE HANDLER -->
-      <div class="mb-3 row d-flex justify-content-center" v-if="!isError">
-        <button class="btn btn-success mb-3" @click="NextorPrev('prev')">
+      <div class=" row d-flex flex-column justify-content-center align-items-center" v-if="!isError">
+           <EntryControl/>
+        <!-- <button class="btn btn-success mb-3" @click="NextorPrev('prev')">
           Prev Page
         </button>
-        <p class="m-2"
+        --> <br>
+         <p class=""
           >Currently Showing Page: <strong>{{ getPageStatus }}</strong>  | Entries : <strong>{{getPageEntry}}</strong>
-        </p>
-        <EntryControl/>
-        <button class="btn btn-success mb-3" @click="NextorPrev('next')">
+        </p> 
+       
+        <!-- <button class="btn btn-success mb-3" @click="NextorPrev('next')">
           Next Page
-        </button>
+        </button> -->
       </div>
 
 <!-- LOADER -->
@@ -44,6 +48,7 @@
 // @ is an alias to /src
 // IMPORTING ALL COMPONENTS
 import Pagintaion from "../components/Pagination.vue";
+import CustomPagination from "../components/CustomPagination.vue";
 import CommentPost from "../components/reusable/CommentPost.vue";
 import Loader from "../components/Loader.vue";
 import Error from "../components/Error.vue";
@@ -74,7 +79,8 @@ export default {
     CommentPost,
     Loader,
     Error,
-    EntryControl
+    EntryControl,
+    CustomPagination
   },
   methods: {
     //HANDLING NEXT OR PREV PAGE

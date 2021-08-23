@@ -11,9 +11,12 @@ export default new Vuex.Store({
     isError: false,
     page: 1,
     entries: 10,
+
+    totalPage: [],
+    totalPageNumber: 10,
   },
   mutations: {
-    //MUTATION: SETTING POSTS (COMMNETS) to STATE 
+    //MUTATION: SETTING POSTS (COMMNETS) to STATE
     SET_COMMENTS(state, payload) {
       state.comments = payload;
     },
@@ -33,6 +36,10 @@ export default new Vuex.Store({
     SET_PAGE_ENTRY(state, entry) {
       state.entries = entry;
     },
+    SET_TOTAL_PAGE(state, pageArray) {
+      state.totalPage = [];
+      state.totalPage = pageArray;
+    },
   },
   actions: {
     //ACTION: WHEN LOADS COMMENTS (POSTS)
@@ -48,11 +55,24 @@ export default new Vuex.Store({
           context.commit("CHANGE_STATUS_LOADING", false);
           context.commit("SET_PAGE", payload.page);
           context.commit("SET_PAGE_ENTRY", payload.entry);
+          context.state.totalPageNumber = 100 / payload.entry;
+          let maxPageCount = context.state.totalPageNumber;
+
+          context.dispatch("setTotalPageAction", maxPageCount);
         })
         .catch((err) => {
           context.commit("CHANGE_STATUS_LOADING", false);
           context.commit("CHANGE_STATUS_ERROR", true);
         });
+    },
+    setTotalPageAction(context, maxPageCount) {
+      console.log("max page count", maxPageCount);
+      let pageArray = [];
+      for (let index = 1; index <= maxPageCount; ++index) {
+        console.log(index);
+        pageArray.push(index);
+      }
+      context.commit("SET_TOTAL_PAGE", pageArray);
     },
   },
   getters: {
@@ -75,6 +95,9 @@ export default new Vuex.Store({
     //FOR PAGE ENTRIES
     getPageEntry(state) {
       return state.entries;
+    },
+    getTotalPage(state) {
+      return state.totalPage;
     },
   },
 });
