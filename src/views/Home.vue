@@ -1,25 +1,30 @@
 <template>
   <div class="home">
     <div class="container mt-4">
-    
-      <CustomPagination/>
+     
+         <CustomPagination />
+
+     
       <!-- ERROR -->
       <Error v-if="isError && !isLoading"/>
 
       <!-- PREV PAGE NEXT PAGE HANDLER -->
-      <div class=" row d-flex flex-column justify-content-center align-items-center" v-if="!isError">
+      <div class=" entry-control row d-flex flex-column justify-content-center align-items-center" v-if="!isError && !isLoading">
            <EntryControl/>
         <br>
-         <p class=""
-          >Currently Showing Page: <strong>{{ getPageStatus }}</strong>  | Entries : <strong>{{getPageEntry}}</strong>
+         <p class="status"
+          >Currently Showing Page: <strong class="text-center">{{ getPageStatus }}</strong>  | Entries : <strong class="text-center">{{getPageEntry}}</strong>
         </p> 
       </div>
 
 <!-- LOADER -->
-      <Loader v-if="isLoading" />
+  <div  v-if="isLoading" class="row d-flex justify-content-center">
+   <Loader />
+  </div>
+   
 
       <!-- POSTS OR COMMENTS FETCHED FROM SERVER -->
-      <div v-else class="row d-flex justify-content-center">
+      <div v-if="!isError" class="row d-flex justify-content-center">
         <CommentPost
           v-for="comment in fetchComments"
           :name="comment.name"
@@ -73,9 +78,27 @@ export default {
     CustomPagination
   },
 
+ 
+  
+
 };
 </script>
 
 <style scoped>
 
+strong{
+  color: rgb(255, 255, 255);
+  font-size: 1.3rem;
+  background: rgb(0, 0, 0);
+  border-radius: 50%;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  
+}
+.status{
+  font-weight: bolder;
+  font-size: 1.1rem;
+  color: green;
+}
 </style>

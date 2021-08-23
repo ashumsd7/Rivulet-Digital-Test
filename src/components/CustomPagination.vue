@@ -29,17 +29,17 @@ export default {
 
   methods: {
     handlePageAction(pageNumber) {
+      this.removeStyle();
       this.currentPage=pageNumber
+        this.addStyle();
       this.$store.dispatch("loadComments", {
         page: pageNumber,
         entry: this.getPageEntry,
       });
     },
     nextOrPrev(action) {
-      // alert(action)
-        //  let ele= document.getElementById("'"+this.currentPage+"'")
-        //  console.log("elele",ele);
-        //  ele.classList.add("isActive");
+       this.removeStyle();
+    
       action == "next"
         ? this.$store.dispatch("loadComments", {
             page: ++this.currentPage,
@@ -49,7 +49,20 @@ export default {
             page: --this.currentPage,
             entry: this.getPageEntry,
           });
+          this.addStyle();
     },
+    addStyle(){
+      let ele= document.getElementById(this.currentPage);
+    ele.classList.add('isActive')
+    },
+   removeStyle(){
+      let ele= document.getElementById(this.currentPage);
+    ele.classList.remove('isActive')
+    }
+  },
+   mounted() {
+    let ele= document.getElementById(this.currentPage);
+    console.log("this is page",ele);
   },
 };
 </script>
