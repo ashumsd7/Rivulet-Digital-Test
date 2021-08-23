@@ -46,9 +46,11 @@ export default new Vuex.Store({
     loadComments(context, payload) {
       context.commit("CHANGE_STATUS_ERROR", false);
       context.commit("CHANGE_STATUS_LOADING", true);
+      //IF PAGES ACCESSSED : AND PAGE IS NOT AVAILABLE
       if (context.state.totalPageNumber < payload.page || payload.page <= 0) {
         alert('invalid page access!')
-       context.dispatch("loadComments", { page:1, entry: 10 });
+        context.dispatch("loadComments", { page: 1, entry: 10 });
+        window.location.reload();
         return;
       }
         axios

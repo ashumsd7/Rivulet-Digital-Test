@@ -9,17 +9,10 @@
       <!-- PREV PAGE NEXT PAGE HANDLER -->
       <div class=" row d-flex flex-column justify-content-center align-items-center" v-if="!isError">
            <EntryControl/>
-        <!-- <button class="btn btn-success mb-3" @click="NextorPrev('prev')">
-          Prev Page
-        </button>
-        --> <br>
+        <br>
          <p class=""
           >Currently Showing Page: <strong>{{ getPageStatus }}</strong>  | Entries : <strong>{{getPageEntry}}</strong>
         </p> 
-       
-        <!-- <button class="btn btn-success mb-3" @click="NextorPrev('next')">
-          Next Page
-        </button> -->
       </div>
 
 <!-- LOADER -->
@@ -36,9 +29,7 @@
           :key="comment.id"
         />
       </div>
-   
-   <!-- PAGINATION -->
-      <!-- <Pagintaion  /> -->
+ 
     
     </div>
   </div>
@@ -47,7 +38,7 @@
 <script>
 // @ is an alias to /src
 // IMPORTING ALL COMPONENTS
-import Pagintaion from "../components/Pagination.vue";
+
 import CustomPagination from "../components/CustomPagination.vue";
 import CommentPost from "../components/reusable/CommentPost.vue";
 import Loader from "../components/Loader.vue";
@@ -75,27 +66,13 @@ export default {
   },
   //REGISTERING COMPONENTS LOCALLY
   components: {
-    Pagintaion,
     CommentPost,
     Loader,
     Error,
     EntryControl,
     CustomPagination
   },
-  methods: {
-    //HANDLING NEXT OR PREV PAGE
-    // NextorPrev(action) {
-    //   if(this.getPageStatus==1 && action=='prev'){
-    //    return;
-    //   }
-    //   if(this.getPageStatus==20 && action=='next'){
-    //     return;
-    //   }
-    //   action == "next"
-    //     ? this.$store.dispatch("loadComments", {page:this.getPageStatus + 1,entry:this.getPageEntry})
-    //     : this.$store.dispatch("loadComments", {page:this.getPageStatus - 1,entry:this.getPageEntry});
-    // },
-  },
+
 };
 </script>
 
