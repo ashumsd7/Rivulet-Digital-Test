@@ -101,4 +101,18 @@ strong{
   font-size: 1.1rem;
   color: green;
 }
+@media screen and (max-width:900px) {
+.status{
+  font-weight: bold;
+  font-size: .8rem;
+ 
+}
+strong{
+  font-size: 1rem;
+  background: rgb(0, 0, 0);
+  width: 25px;
+  height: 25px;
+  
+}
+}
 </style>

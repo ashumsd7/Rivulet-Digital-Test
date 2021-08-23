@@ -88,8 +88,11 @@ ul li.isActive {
 .makeDisable{
   cursor: not-allowed;
 }
-.custom-pagination{
-
- 
+@media screen and (max-width:900px) {
+ ul li{
+   font-size: .6rem;
+    padding: 0.3rem;
+    
+ }
 }
 </style>
