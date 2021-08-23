@@ -2,7 +2,7 @@
   <div>
     <b-dropdown
       id="dropdown-left"
-      text="Entry Per Page"
+      :text='selectedEntry'
       variant="primary"
       class=""
     >
@@ -27,11 +27,12 @@ export default {
   data() {
     return {
       options: [5,6,7,8,9, 10,11,12,13,14,15,16,17,18,19, 20],
+      selectedEntry:`Entry per page`
     };
   },
   methods: {
     handleEntry(option) {
-     
+     this.selectedEntry=option
       this.$store.dispatch("loadComments", {page:1, entry:option});
     },
   },

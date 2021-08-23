@@ -38,7 +38,7 @@
       </div>
    
    <!-- PAGINATION -->
-      <Pagintaion  />
+      <!-- <Pagintaion  /> -->
     
     </div>
   </div>
@@ -84,17 +84,17 @@ export default {
   },
   methods: {
     //HANDLING NEXT OR PREV PAGE
-    NextorPrev(action) {
-      if(this.getPageStatus==1 && action=='prev'){
-       return;
-      }
-      if(this.getPageStatus==20 && action=='next'){
-        return;
-      }
-      action == "next"
-        ? this.$store.dispatch("loadComments", {page:this.getPageStatus + 1,entry:this.getPageEntry})
-        : this.$store.dispatch("loadComments", {page:this.getPageStatus - 1,entry:this.getPageEntry});
-    },
+    // NextorPrev(action) {
+    //   if(this.getPageStatus==1 && action=='prev'){
+    //    return;
+    //   }
+    //   if(this.getPageStatus==20 && action=='next'){
+    //     return;
+    //   }
+    //   action == "next"
+    //     ? this.$store.dispatch("loadComments", {page:this.getPageStatus + 1,entry:this.getPageEntry})
+    //     : this.$store.dispatch("loadComments", {page:this.getPageStatus - 1,entry:this.getPageEntry});
+    // },
   },
 };
 </script>

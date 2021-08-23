@@ -46,24 +46,30 @@ export default new Vuex.Store({
     loadComments(context, payload) {
       context.commit("CHANGE_STATUS_ERROR", false);
       context.commit("CHANGE_STATUS_LOADING", true);
-      axios
-        .get(
-          `https://jsonplaceholder.typicode.com/comments?_page=${payload.page}&_limit=${payload.entry}`
-        )
-        .then((res) => {
-          context.commit("SET_COMMENTS", res.data);
-          context.commit("CHANGE_STATUS_LOADING", false);
-          context.commit("SET_PAGE", payload.page);
-          context.commit("SET_PAGE_ENTRY", payload.entry);
-          context.state.totalPageNumber = 100 / payload.entry;
-          let maxPageCount = context.state.totalPageNumber;
+      if (context.state.totalPageNumber < payload.page || payload.page <= 0) {
+        alert('invalid page access!')
+       context.dispatch("loadComments", { page:1, entry: 10 });
+        return;
+      }
+        axios
+          .get(
+            `https://jsonplaceholder.typicode.com/comments?_page=${payload.page}&_limit=${payload.entry}`
+          )
+          .then((res) => {
+         
+            context.commit("SET_COMMENTS", res.data);
+            context.commit("CHANGE_STATUS_LOADING", false);
+            context.commit("SET_PAGE", payload.page);
+            context.commit("SET_PAGE_ENTRY", payload.entry);
+            context.state.totalPageNumber = 100 / payload.entry;
+            let maxPageCount = context.state.totalPageNumber;
 
-          context.dispatch("setTotalPageAction", maxPageCount);
-        })
-        .catch((err) => {
-          context.commit("CHANGE_STATUS_LOADING", false);
-          context.commit("CHANGE_STATUS_ERROR", true);
-        });
+            context.dispatch("setTotalPageAction", maxPageCount);
+          })
+          .catch((err) => {
+            context.commit("CHANGE_STATUS_LOADING", false);
+            context.commit("CHANGE_STATUS_ERROR", true);
+          });
     },
     setTotalPageAction(context, maxPageCount) {
       console.log("max page count", maxPageCount);
